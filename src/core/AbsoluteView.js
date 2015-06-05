@@ -1,6 +1,6 @@
 /**
  * 绝对定位的组件
- * @extends View
+ * @extends OOUI.View
  * parameters = {
  *  tagName : <string>,
  *  id : <string>,
@@ -16,9 +16,9 @@
  * @param {number} parameters.positionMode  位置模式，坐标默认表示的是左上角的位置，也可设置成其它的。可选
  * @constructor
  */
-function AbsoluteView(parameters){
+OOUI.AbsoluteView = function(parameters){
 
-    View.call(this,parameters);
+    OOUI.View.call(this,parameters);
 
     //绝对定位，脱离文档流
     this._style.position = "absolute";
@@ -57,46 +57,46 @@ function AbsoluteView(parameters){
         if(positionMode){
             this.setPositionMode(positionMode);
         }else{
-            this.setPositionMode(AbsoluteView.POSITION_MODE_LEFT_TOP);
+            this.setPositionMode(OOUI.AbsoluteView.POSITION_MODE_LEFT_TOP);
         }
         if(position){
             this.setPosition(position.x,position.y);
         }
     }else{
-        this.setPositionMode(AbsoluteView.POSITION_MODE_LEFT_TOP);
+        this.setPositionMode(OOUI.AbsoluteView.POSITION_MODE_LEFT_TOP);
     }
 
 }
 
 
-AbsoluteView.prototype = Object.create(View.prototype);
-AbsoluteView.prototype.constructor = AbsoluteView;
+OOUI.AbsoluteView.prototype = Object.create(OOUI.View.prototype);
+OOUI.AbsoluteView.prototype.constructor = OOUI.AbsoluteView;
 
 /**
  * 设置坐标模式，坐标代表的点可以为矩形四顶点中任意一个
  * @param mode {number} 代表位置模式常量
  */
-AbsoluteView.prototype.setPositionMode = function(mode){
+OOUI.AbsoluteView.prototype.setPositionMode = function(mode){
     //清除位置信息
     var style = this._style;
     style.left = style.right = style.top = style.bottom = "";
     //设置坐标对应的style名字
     switch (mode){
-        case AbsoluteView.POSITION_MODE_LEFT_TOP:
-            this._styleNameX = AbsoluteView.X_NAME_LEFT;
-            this._styleNameY = AbsoluteView.Y_NAME_TOP;
+        case OOUI.AbsoluteView.POSITION_MODE_LEFT_TOP:
+            this._styleNameX = OOUI.AbsoluteView.X_NAME_LEFT;
+            this._styleNameY = OOUI.AbsoluteView.Y_NAME_TOP;
             break;
-        case AbsoluteView.POSITION_MODE_LEFT_BOTTOM:
-            this._styleNameX = AbsoluteView.X_NAME_LEFT;
-            this._styleNameY = AbsoluteView.Y_NAME_BOTTOM;
+        case OOUI.AbsoluteView.POSITION_MODE_LEFT_BOTTOM:
+            this._styleNameX = OOUI.AbsoluteView.X_NAME_LEFT;
+            this._styleNameY = OOUI.AbsoluteView.Y_NAME_BOTTOM;
             break;
-        case AbsoluteView.POSITION_MODE_RIGHT_TOP:
-            this._styleNameX = AbsoluteView.X_NAME_RIGHT;
-            this._styleNameY = AbsoluteView.Y_NAME_TOP;
+        case OOUI.AbsoluteView.POSITION_MODE_RIGHT_TOP:
+            this._styleNameX = OOUI.AbsoluteView.X_NAME_RIGHT;
+            this._styleNameY = OOUI.AbsoluteView.Y_NAME_TOP;
             break;
-        case AbsoluteView.POSITION_MODE_RIGHT_BOTTOM:
-            this._styleNameX = AbsoluteView.X_NAME_RIGHT;
-            this._styleNameY = AbsoluteView.Y_NAME_BOTTOM;
+        case OOUI.AbsoluteView.POSITION_MODE_RIGHT_BOTTOM:
+            this._styleNameX = OOUI.AbsoluteView.X_NAME_RIGHT;
+            this._styleNameY = OOUI.AbsoluteView.Y_NAME_BOTTOM;
             break;
     }
 }
@@ -107,7 +107,7 @@ AbsoluteView.prototype.setPositionMode = function(mode){
  * @param y {number} Y坐标
  * @method
  */
-AbsoluteView.prototype.setPosition = function (x, y) {
+OOUI.AbsoluteView.prototype.setPosition = function (x, y) {
     if(x){
         this._style[this._styleNameX] = x+"px";
     }
@@ -122,7 +122,7 @@ AbsoluteView.prototype.setPosition = function (x, y) {
  * @returns {number}
  * @method
  */
-AbsoluteView.prototype.getX = function(){
+OOUI.AbsoluteView.prototype.getX = function(){
     var xs = this._style[this._styleNameX];
     if(xs==""){
         return 0;
@@ -135,7 +135,7 @@ AbsoluteView.prototype.getX = function(){
  * @returns {number}
  * @method
  */
-AbsoluteView.prototype.getY = function(){
+OOUI.AbsoluteView.prototype.getY = function(){
     var ys = this._style[this._styleNameY];
     if(ys==""){
         return 0;
@@ -149,50 +149,50 @@ AbsoluteView.prototype.getY = function(){
  * @constant
  * @type {number}
  */
-AbsoluteView.POSITION_MODE_LEFT_TOP = 1;
+OOUI.AbsoluteView.POSITION_MODE_LEFT_TOP = 1;
 /**
  * 位置模式：坐标代表左下角
  * @constant
  * @type {number}
  */
-AbsoluteView.POSITION_MODE_LEFT_BOTTOM = 2;
+OOUI.AbsoluteView.POSITION_MODE_LEFT_BOTTOM = 2;
 /**
  * 位置模式：坐标代表右上角
  * @constant
  * @type {number}
  */
-AbsoluteView.POSITION_MODE_RIGHT_TOP = 3;
+OOUI.AbsoluteView.POSITION_MODE_RIGHT_TOP = 3;
 /**
  * 位置模式：坐标代表右下角
  * @constant
  * @type {number}
  */
-AbsoluteView.POSITION_MODE_RIGHT_BOTTOM = 4;
+OOUI.AbsoluteView.POSITION_MODE_RIGHT_BOTTOM = 4;
 
 /**
  * 横坐标在左边对应style字符串名字
  * @constant
  * @type {string}
  */
-AbsoluteView.X_NAME_LEFT = "left";
+OOUI.AbsoluteView.X_NAME_LEFT = "left";
 /**
  * 横坐标在右边对应style字符串名字
  * @constant
  * @type {string}
  */
-AbsoluteView.X_NAME_RIGHT = "right";
+OOUI.AbsoluteView.X_NAME_RIGHT = "right";
 /**
  * 纵坐标在左边对应style字符串名字
  * @constant
  * @type {string}
  */
-AbsoluteView.Y_NAME_TOP = "top";
+OOUI.AbsoluteView.Y_NAME_TOP = "top";
 /**
  * 纵坐标在右边对应style字符串名字
  * @constant
  * @type {string}
  */
-AbsoluteView.Y_NAME_BOTTOM = "bottom";
+OOUI.AbsoluteView.Y_NAME_BOTTOM = "bottom";
 
 
 

@@ -1,3 +1,5 @@
+var OOUI = {};
+
 /**
  * 所有可视组件的父类
  * parameters = {
@@ -9,7 +11,7 @@
  * }
  * @constructor
  */
-function View(parameters){
+OOUI.View = function(parameters){
     /**
      * 代表可视组件的div元素
      * @type {HTMLElement}
@@ -86,9 +88,9 @@ function View(parameters){
     this._parent = null;
 }
 
-View.prototype = {
+OOUI.View.prototype = {
 
-    constructor : View,
+    constructor : OOUI.View,
 
     /**
      * 通过json数据设置一堆样式
